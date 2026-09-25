@@ -17,6 +17,10 @@ public static class GameEvents
     public static event Action PlayerDamaged;
     public static event Action PlayerDied;
     public static event Action<int> EnemyKilled;             // points that enemy was worth
+    public static event Action<Vector3> EnemySpawned;
+    public static event Action<Vector3> EnemyHit;
+    public static event Action<Vector3> EnemyFired;
+    public static event Action<Vector3> EnemyMeleeHit;
 
     public static void RaiseStateChanged(GameStateId state) => StateChanged?.Invoke(state);
     public static void RaiseRoundStarted() => RoundStarted?.Invoke();
@@ -29,6 +33,10 @@ public static class GameEvents
     public static void RaisePlayerDamaged() => PlayerDamaged?.Invoke();
     public static void RaisePlayerDied() => PlayerDied?.Invoke();
     public static void RaiseEnemyKilled(int points) => EnemyKilled?.Invoke(points);
+    public static void RaiseEnemySpawned(Vector3 position) => EnemySpawned?.Invoke(position);
+    public static void RaiseEnemyHit(Vector3 position) => EnemyHit?.Invoke(position);
+    public static void RaiseEnemyFired(Vector3 position) => EnemyFired?.Invoke(position);
+    public static void RaiseEnemyMeleeHit(Vector3 position) => EnemyMeleeHit?.Invoke(position);
 
     // static events survive between play sessions in the editor, so clear them on every start
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -44,5 +52,9 @@ public static class GameEvents
         PlayerDamaged = null;
         PlayerDied = null;
         EnemyKilled = null;
+        EnemySpawned = null;
+        EnemyHit = null;
+        EnemyFired = null;
+        EnemyMeleeHit = null;
     }
 }
