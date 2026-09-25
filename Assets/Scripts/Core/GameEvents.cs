@@ -13,6 +13,7 @@ public static class GameEvents
     public static event Action<int> ScoreChanged;            // new total score
     public static event Action<int> TimeChanged;             // whole seconds left
     public static event Action<int, int> PlayerHealthChanged; // current, max
+    public static event Action PlayerFired;
     public static event Action PlayerDamaged;
     public static event Action PlayerDied;
     public static event Action<int> EnemyKilled;             // points that enemy was worth
@@ -24,6 +25,7 @@ public static class GameEvents
     public static void RaiseScoreChanged(int score) => ScoreChanged?.Invoke(score);
     public static void RaiseTimeChanged(int secondsLeft) => TimeChanged?.Invoke(secondsLeft);
     public static void RaisePlayerHealthChanged(int current, int max) => PlayerHealthChanged?.Invoke(current, max);
+    public static void RaisePlayerFired() => PlayerFired?.Invoke();
     public static void RaisePlayerDamaged() => PlayerDamaged?.Invoke();
     public static void RaisePlayerDied() => PlayerDied?.Invoke();
     public static void RaiseEnemyKilled(int points) => EnemyKilled?.Invoke(points);
@@ -38,6 +40,7 @@ public static class GameEvents
         ScoreChanged = null;
         TimeChanged = null;
         PlayerHealthChanged = null;
+        PlayerFired = null;
         PlayerDamaged = null;
         PlayerDied = null;
         EnemyKilled = null;

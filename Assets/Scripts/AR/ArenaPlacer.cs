@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -25,7 +24,6 @@ public class ArenaPlacer : MonoBehaviour
     Transform arena;
 
     static readonly List<ARRaycastHit> arHits = new();
-    static readonly List<RaycastResult> uiHits = new();
 
     void Awake()
     {
@@ -43,7 +41,7 @@ public class ArenaPlacer : MonoBehaviour
         if (pointer == null || !pointer.press.wasPressedThisFrame) return;
 
         Vector2 screenPos = pointer.position.ReadValue();
-        if (IsOverUI(screenPos)) return;
+        if (ScreenInput.IsOverUI(screenPos)) return;
 
         if (!raycastManager.Raycast(screenPos, arHits, TrackableType.PlaneWithinPolygon)) return;
 
@@ -75,16 +73,5 @@ public class ArenaPlacer : MonoBehaviour
         planeManager.enabled = false;
         foreach (ARPlane plane in planeManager.trackables)
             plane.gameObject.SetActive(false);
-    }
-
-    // stops a tap on a button from also placing the arena behind it
-    static bool IsOverUI(Vector2 screenPos)
-    {
-        if (EventSystem.current == null) return false;
-
-        var data = new PointerEventData(EventSystem.current) { position = screenPos };
-        uiHits.Clear();
-        EventSystem.current.RaycastAll(data, uiHits);
-        return uiHits.Count > 0;
     }
 }
