@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // FPS shooting. Hold a finger anywhere on the screen to fire at the crosshair.
-// Bullets come out of a point just below the camera, like a gun held in front of you,
-// but are aimed at whatever sits under the crosshair so what you see is what you hit.
+// Bullets leave from the gun's barrel but are aimed at whatever sits under the crosshair,
+// so what you see is what you hit.
 [RequireComponent(typeof(Camera))]
 public class PlayerShooter : MonoBehaviour
 {
@@ -13,6 +13,8 @@ public class PlayerShooter : MonoBehaviour
     [SerializeField] float aimRange = 20f;
     [Tooltip("Default + Enemy. Leave Player out so we don't aim at ourselves.")]
     [SerializeField] LayerMask aimMask = ~0;
+    [Tooltip("Barrel tip of the gun model. If empty, bullets start from Muzzle Offset instead.")]
+    [SerializeField] Transform muzzle;
     [SerializeField] Vector3 muzzleOffset = new(0.04f, -0.06f, 0.15f);
 
     float nextShotTime;
@@ -33,13 +35,13 @@ public class PlayerShooter : MonoBehaviour
     {
         nextShotTime = Time.time + 1f / fireRate;
 
-        Vector3 muzzle = transform.TransformPoint(muzzleOffset);
+        Vector3 from = muzzle != null ? muzzle.position : transform.TransformPoint(muzzleOffset);
 
         Vector3 target = Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, aimRange, aimMask, QueryTriggerInteraction.Collide)
             ? hit.point
             : transform.position + transform.forward * aimRange;
 
-        bulletPool.Fire(muzzle, (target - muzzle).normalized, damage);
+        bulletPool.Fire(from, (target - from).normalized, damage);
         GameEvents.RaisePlayerFired();
     }
 }
