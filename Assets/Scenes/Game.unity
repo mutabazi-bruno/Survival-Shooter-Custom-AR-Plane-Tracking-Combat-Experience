@@ -681,6 +681,128 @@ Transform:
   - {fileID: 1165276066}
   m_Father: {fileID: 133982959}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1135847904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1135847906}
+  - component: {fileID: 1135847905}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1135847905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135847904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6fad2cc9b486b488bc1848c3a304f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  menuMusic: {fileID: 8300000, guid: 460bf7b888664584ab2a98a2a3250bc5, type: 3}
+  gameMusic: {fileID: 8300000, guid: 9e8f4364ff5aae24ba7cfa7a933c4415, type: 3}
+  musicVolume: 0.35
+  musicFadeTime: 1
+  playerShoot:
+    clips:
+    - {fileID: 8300000, guid: 897a0ea7ad1fe874f9f8aabf57ef07d4, type: 3}
+    - {fileID: 8300000, guid: dd69ca60a9f531c468e8580bed410796, type: 3}
+    - {fileID: 8300000, guid: d13f41195d52fe44aa3facb5d2a714a2, type: 3}
+    volume: 0.45
+    pitchVariation: 0.08
+  playerDeath:
+    clips:
+    - {fileID: 8300000, guid: 841a371aba3f5544fb5c14da1d5f677f, type: 3}
+    volume: 1
+    pitchVariation: 0
+  enemySpawn:
+    clips:
+    - {fileID: 8300000, guid: a32c44676b4e822449b52588cbd14b8e, type: 3}
+    volume: 0.7
+    pitchVariation: 0.1
+  enemyShoot:
+    clips:
+    - {fileID: 8300000, guid: 4666fce8bb91b204596547eb8d5bd95b, type: 3}
+    - {fileID: 8300000, guid: dda05510ab0d1c740b709d2d1fbfabc3, type: 3}
+    volume: 0.8
+    pitchVariation: 0.08
+  meleeHit:
+    clips:
+    - {fileID: 8300000, guid: a5215064a1df42542ba55b7446d41706, type: 3}
+    - {fileID: 8300000, guid: 732eff42c0ef93b4a8fa51549980790b, type: 3}
+    volume: 1
+    pitchVariation: 0.08
+  enemyHit:
+    clips:
+    - {fileID: 8300000, guid: 54d03f944545d1f4e94effc7d15fa3de, type: 3}
+    - {fileID: 8300000, guid: edeac9a17946afe4b858769fc85c0fc0, type: 3}
+    - {fileID: 8300000, guid: f6f1d24f8d4ae9c4e820fe8ca4a7db29, type: 3}
+    volume: 0.7
+    pitchVariation: 0.12
+  enemyDeath:
+    clips:
+    - {fileID: 8300000, guid: 13c9915e34376b143a45b79e9384394d, type: 3}
+    - {fileID: 8300000, guid: 6b8b782b8c3058c44aa68d8c5778c228, type: 3}
+    volume: 0.8
+    pitchVariation: 0.1
+  mechStep:
+    clips:
+    - {fileID: 8300000, guid: 0b8a29e563a12ad43a28c96afa62e406, type: 3}
+    - {fileID: 8300000, guid: 51dbf76af0ac8c24b9fe33662c89b043, type: 3}
+    - {fileID: 8300000, guid: c59bce9a347cade478f57fad3f5ea9b4, type: 3}
+    volume: 0.35
+    pitchVariation: 0.15
+  prepareYourself: {fileID: 8300000, guid: a9cb5eddf9904184db31b4f32bae049d, type: 3}
+  fight: {fileID: 8300000, guid: eb1e3f61278e21c49858db6b64999a86, type: 3}
+  youWin: {fileID: 8300000, guid: 219a70e025d2fbd409ce24d31dd68438, type: 3}
+  youLose: {fileID: 8300000, guid: cbb2dbe08b1cf7c4c9b81654b465e29d, type: 3}
+  countdown:
+  - {fileID: 8300000, guid: db2288bd1b80d8f479dc20bd1fef61b7, type: 3}
+  - {fileID: 8300000, guid: 0ed97a6762f557b47b45b802a8e9fff2, type: 3}
+  - {fileID: 8300000, guid: ea0ed8d46856a9b4a92b0c0489d2835d, type: 3}
+  - {fileID: 8300000, guid: 022f4674186cc04498bc2c58dce8a8c4, type: 3}
+  - {fileID: 8300000, guid: b88744d5db28b5d499912bc83fb10efe, type: 3}
+  voiceVolume: 0.9
+  click:
+    clips:
+    - {fileID: 8300000, guid: 4a56d70d0dd14804789855c81f0fadca, type: 3}
+    volume: 0.8
+    pitchVariation: 0
+  hover:
+    clips:
+    - {fileID: 8300000, guid: e2ab1ef7e71441d4681e84324fd3394c, type: 3}
+    volume: 0.5
+    pitchVariation: 0
+  effectSources: 10
+  stepSources: 4
+  minDistance: 0.4
+  maxDistance: 6
+--- !u!4 &1135847906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135847904}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165276065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,3 +1595,4 @@ SceneRoots:
   - {fileID: 716824144}
   - {fileID: 1988896316}
   - {fileID: 270932583}
+  - {fileID: 1135847906}

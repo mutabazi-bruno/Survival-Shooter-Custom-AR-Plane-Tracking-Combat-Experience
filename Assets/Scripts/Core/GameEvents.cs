@@ -21,6 +21,7 @@ public static class GameEvents
     public static event Action<Vector3> EnemyHit;
     public static event Action<Vector3> EnemyFired;
     public static event Action<Vector3> EnemyMeleeHit;
+    public static event Action<Vector3> EnemyStep;
 
     public static void RaiseStateChanged(GameStateId state) => StateChanged?.Invoke(state);
     public static void RaiseRoundStarted() => RoundStarted?.Invoke();
@@ -37,6 +38,7 @@ public static class GameEvents
     public static void RaiseEnemyHit(Vector3 position) => EnemyHit?.Invoke(position);
     public static void RaiseEnemyFired(Vector3 position) => EnemyFired?.Invoke(position);
     public static void RaiseEnemyMeleeHit(Vector3 position) => EnemyMeleeHit?.Invoke(position);
+    public static void RaiseEnemyStep(Vector3 position) => EnemyStep?.Invoke(position);
 
     // static events survive between play sessions in the editor, so clear them on every start
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -56,5 +58,6 @@ public static class GameEvents
         EnemyHit = null;
         EnemyFired = null;
         EnemyMeleeHit = null;
+        EnemyStep = null;
     }
 }

@@ -14,6 +14,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IPoolable
     [SerializeField, Min(1)] int maxHealth = 3;
     [SerializeField, Min(0f)] float moveSpeed = 0.4f;
     [SerializeField] float turnSpeed = 360f;
+    [Tooltip("Distance walked between footstep sounds.")]
+    [SerializeField] float stepLength = 0.2f;
     [SerializeField] int scoreValue = 10;
 
     [Header("Feedback")]
@@ -37,6 +39,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IPoolable
     float growTimer;
     float despawnTimer;
     float animLockTimer;
+    float stepDistance;
     string currentAnim;
 
     protected Transform Player { get; private set; }
@@ -75,6 +78,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IPoolable
         flashTimer = 0f;
         despawnTimer = 0f;
         animLockTimer = 0f;
+        stepDistance = 0f;
         currentAnim = null;
 
         // pop in from nothing instead of just appearing
@@ -155,8 +159,16 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IPoolable
         direction.y = 0f;
         if (direction.sqrMagnitude < 0.0001f) return;
 
-        transform.position += direction.normalized * (moveSpeed * SpeedMultiplier * deltaTime);
+        float distance = moveSpeed * SpeedMultiplier * deltaTime;
+        transform.position += direction.normalized * distance;
         PlayAnimation("Run");
+
+        stepDistance += distance;
+        if (stepDistance >= stepLength)
+        {
+            stepDistance = 0f;
+            GameEvents.RaiseEnemyStep(transform.position);
+        }
     }
 
     protected int ScaledDamage(int baseDamage)
