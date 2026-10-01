@@ -93,7 +93,7 @@ public class AudioManager : MonoBehaviour
         GameEvents.EnemyMeleeHit += OnMeleeHit;
         GameEvents.EnemyHit += OnEnemyHit;
         GameEvents.EnemyStep += OnEnemyStep;
-        GameEvents.EnemyKilled += OnEnemyKilled;
+        GameEvents.EnemyDied += OnEnemyDied;
     }
 
     void OnDisable()
@@ -109,7 +109,7 @@ public class AudioManager : MonoBehaviour
         GameEvents.EnemyMeleeHit -= OnMeleeHit;
         GameEvents.EnemyHit -= OnEnemyHit;
         GameEvents.EnemyStep -= OnEnemyStep;
-        GameEvents.EnemyKilled -= OnEnemyKilled;
+        GameEvents.EnemyDied -= OnEnemyDied;
     }
 
     void OnDestroy()
@@ -166,8 +166,7 @@ public class AudioManager : MonoBehaviour
     void OnEnemyHit(Vector3 position) => PlayAt(enemyHit, position, effectPool, ref nextEffect);
     void OnEnemyStep(Vector3 position) => PlayAt(mechStep, position, stepPool, ref nextStep);
 
-    // EnemyKilled only carries the score, the explosion is quiet enough to play without a position
-    void OnEnemyKilled(int points) => Play2D(enemyDeath);
+    void OnEnemyDied(Vector3 position) => PlayAt(enemyDeath, position, effectPool, ref nextEffect);
 
     // --- playing ---
 

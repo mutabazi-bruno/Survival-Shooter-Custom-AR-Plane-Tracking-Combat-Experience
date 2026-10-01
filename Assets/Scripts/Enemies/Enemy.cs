@@ -141,6 +141,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IPoolable
         despawnTimer = despawnDelay;
         PlayAnimation("Death", force: true);
         GameEvents.RaiseEnemyKilled(scoreValue);
+        GameEvents.RaiseEnemyDied(hitbox.bounds.center);
     }
 
     // --- helpers for the enemy types ---

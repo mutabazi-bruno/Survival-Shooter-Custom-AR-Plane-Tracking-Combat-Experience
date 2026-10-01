@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour, IPoolable
 
         if (Physics.SphereCast(transform.position, radius, direction, out RaycastHit hit, step, hitMask, QueryTriggerInteraction.Collide))
         {
-            Hit(hit.collider);
+            Hit(hit);
             return;
         }
 
@@ -57,12 +57,16 @@ public class Projectile : MonoBehaviour, IPoolable
             pool.Return(this);
     }
 
-    void Hit(Collider other)
+    void Hit(RaycastHit hit)
     {
         // colliders are often on child meshes, the health script sits on the root
-        var target = other.GetComponentInParent<IDamageable>();
+        var target = hit.collider.GetComponentInParent<IDamageable>();
         if (target != null && target.IsAlive)
             target.TakeDamage(damage);
+
+        // sparks on walls and mechs, but not in the player's face (they already get the red flash)
+        if (target is not PlayerHealth)
+            GameEvents.RaiseProjectileImpact(hit.point);
 
         pool.Return(this);
     }
