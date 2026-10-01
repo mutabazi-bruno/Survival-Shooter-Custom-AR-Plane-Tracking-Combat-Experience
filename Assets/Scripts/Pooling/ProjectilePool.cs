@@ -9,8 +9,6 @@ public class ProjectilePool : MonoBehaviour
 
     ObjectPool<Projectile> pool;
 
-    public int ActiveCount => pool.CountInUse;
-
     void Awake()
     {
         pool = new ObjectPool<Projectile>(prefab, poolSize, transform, bullet => bullet.SetPool(this));
@@ -19,11 +17,9 @@ public class ProjectilePool : MonoBehaviour
     void OnEnable() => GameEvents.RoundEnded += ClearBullets;
     void OnDisable() => GameEvents.RoundEnded -= ClearBullets;
 
-    public Projectile Fire(Vector3 position, Vector3 direction, int damage)
+    public void Fire(Vector3 position, Vector3 direction, int damage)
     {
-        Projectile bullet = pool.Get();
-        bullet.Launch(position, direction, damage);
-        return bullet;
+        pool.Get().Launch(position, direction, damage);
     }
 
     public void Return(Projectile bullet) => pool.Release(bullet);

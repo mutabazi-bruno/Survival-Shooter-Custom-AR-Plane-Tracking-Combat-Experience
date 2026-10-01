@@ -78,6 +78,7 @@ public class Leaderboard : MonoBehaviour
         }
     }
 
+    // right-click the component to wipe old test rounds before a demo
     [ContextMenu("Clear Leaderboard")]
     void Clear()
     {

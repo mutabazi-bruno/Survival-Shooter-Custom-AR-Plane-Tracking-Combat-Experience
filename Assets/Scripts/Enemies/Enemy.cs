@@ -136,12 +136,15 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IPoolable
 
     void Die()
     {
+        // grab the body centre first, a disabled collider reports empty bounds
+        Vector3 bodyCentre = hitbox.bounds.center;
+
         health = 0;
         hitbox.enabled = false;
         despawnTimer = despawnDelay;
         PlayAnimation("Death", force: true);
         GameEvents.RaiseEnemyKilled(scoreValue);
-        GameEvents.RaiseEnemyDied(hitbox.bounds.center);
+        GameEvents.RaiseEnemyDied(bodyCentre);
     }
 
     // --- helpers for the enemy types ---

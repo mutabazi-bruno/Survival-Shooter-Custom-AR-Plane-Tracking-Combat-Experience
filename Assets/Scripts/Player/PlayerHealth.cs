@@ -30,8 +30,4 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (Current == 0)
             GameEvents.RaisePlayerDied();
     }
-
-    // handy for testing damage before enemies exist
-    [ContextMenu("Take 20 damage")]
-    void TestHit() => TakeDamage(20);
 }
