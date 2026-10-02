@@ -64,9 +64,9 @@ Assets/Scripts
 ├── Pooling/   ObjectPool<T>, IPoolable, ProjectilePool
 ├── Effects/   EffectsManager, PooledEffect
 ├── Audio/     AudioManager, Sound
-├── UI/        UIManager, UIPanel and one panel class per screen
+├── UI/        UIManager, UIPanel, one panel class per screen, SafeArea and FillScreen
 ├── Data/      Leaderboard
-└── Utils/     ScreenInput
+└── Utils/     ScreenInput, FpsCounter
 ```
 
 The short version of the architecture:

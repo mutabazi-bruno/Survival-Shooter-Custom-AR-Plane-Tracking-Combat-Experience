@@ -107,3 +107,7 @@ InitTestScene*.unity*
 
 # Editor settings
 .vscode/
+
+# scene backups Unity makes after a crash
+/[Aa]ssets/_Recovery/
+/[Aa]ssets/_Recovery.meta

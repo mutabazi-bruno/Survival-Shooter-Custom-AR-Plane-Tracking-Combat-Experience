@@ -562060,6 +562060,30 @@ MonoBehaviour:
       m_MarkPositionAdjustment:
         m_XPositionAdjustment: 27.421875
         m_YPositionAdjustment: 67.19238
+    - m_BaseGlyphID: 583
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 33.706055
+        m_YCoordinate: 31.02539
+      m_MarkGlyphID: 527
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 27.37793
+    - m_BaseGlyphID: 583
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 33.706055
+        m_YCoordinate: 31.02539
+      m_MarkGlyphID: 528
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 27.37793
+    - m_BaseGlyphID: 583
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 33.706055
+        m_YCoordinate: 31.02539
+      m_MarkGlyphID: 529
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 27.37793
     m_MarkToMarkAdjustmentRecords: []
   m_ShouldReimportFontFeatures: 0
   m_FallbackFontAssetTable: []

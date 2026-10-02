@@ -9,6 +9,11 @@ public class WeaponView : MonoBehaviour
     [SerializeField] SpriteRenderer muzzleFlash;
     [SerializeField] float flashTime = 0.05f;
 
+    [Header("Screen fit")]
+    [SerializeField] Vector2 screenPoint = new(0.78f, 0.22f); // where the gun sits, 0-1 across the screen
+    [SerializeField] float holdDistance = 0.24f;              // metres in front of the camera
+    [SerializeField] float designViewWidth = 0.3f;            // view width at holdDistance the model was sized for
+
     [Header("Recoil")]
     [SerializeField] float kickBack = 0.03f;   // metres
     [SerializeField] float kickUp = 7f;        // degrees
@@ -20,9 +25,12 @@ public class WeaponView : MonoBehaviour
     [SerializeField] float swaySmoothing = 8f;
 
     Transform cameraTransform;
+    Camera cam;
     Quaternion lastCameraRotation;
     Vector3 restPosition;
     Quaternion restRotation;
+    Vector3 baseScale;
+    float fit = 1f;
     Vector3 flashScale;
     Vector2 sway;
     float recoil;
@@ -31,9 +39,11 @@ public class WeaponView : MonoBehaviour
     void Awake()
     {
         cameraTransform = transform.parent;
+        cam = cameraTransform.GetComponent<Camera>();
         lastCameraRotation = cameraTransform.rotation;
         restPosition = transform.localPosition;
         restRotation = transform.localRotation;
+        baseScale = transform.localScale;
         flashScale = muzzleFlash.transform.localScale;
         muzzleFlash.enabled = false;
     }
@@ -83,7 +93,8 @@ public class WeaponView : MonoBehaviour
 
         recoil = Mathf.Lerp(recoil, 0f, recoverSpeed * dt);
 
-        transform.localPosition = restPosition + Vector3.back * (kickBack * recoil);
+        FitToScreen();
+        transform.localPosition = restPosition + Vector3.back * (kickBack * fit * recoil);
         transform.localRotation = restRotation * Quaternion.Euler(-kickUp * recoil + sway.y, sway.x, 0f);
 
         if (flashTimer > 0f)
@@ -91,5 +102,22 @@ public class WeaponView : MonoBehaviour
             flashTimer -= dt;
             if (flashTimer <= 0f) muzzleFlash.enabled = false;
         }
+    }
+
+    // A phone camera in portrait sees a much narrower view than the editor does, so a gun
+    // with a fixed size ends up covering half the screen. Instead it's placed and sized
+    // from the AR camera's real field of view, which ARCore sets on the projection matrix.
+    void FitToScreen()
+    {
+        Matrix4x4 projection = cam.projectionMatrix;
+        float halfWidth = holdDistance / projection.m00;
+        float halfHeight = holdDistance / projection.m11;
+
+        fit = halfWidth * 2f / designViewWidth;
+        restPosition = new Vector3(
+            (screenPoint.x * 2f - 1f) * halfWidth,
+            (screenPoint.y * 2f - 1f) * halfHeight,
+            holdDistance);
+        transform.localScale = baseScale * fit;
     }
 }
