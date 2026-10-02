@@ -12,7 +12,7 @@ Made by **Mutabazi Ishimwe Bruno**.
 
 | | |
 |---|---|
-| APK (Android, ARCore phone) | _link coming_ |
+| APK (Android, ARCore phone) | [Download from Google Drive](https://drive.google.com/drive/folders/18WzEZGlTmP2VpWrsPWqv8C2TAWfFWH7C?usp=sharing) |
 | Demo video | [Watch on YouTube](https://youtu.be/NYWwGrzzOao) |
 | Technical document | [TechnicalDocument_MutabaziIshimweBruno.pdf](Docs/TechnicalDocument_MutabaziIshimweBruno.pdf) |
 
